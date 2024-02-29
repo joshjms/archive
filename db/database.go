@@ -2,10 +2,8 @@ package db
 
 import (
 	"fmt"
-	"log"
 	"os"
 
-	fs "github.com/joshjms/archive/filesystem/models"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -22,16 +20,6 @@ func Init() (*gorm.DB, error) {
 
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
-		return nil, err
-	}
-
-	if err := db.AutoMigrate(&fs.File{}); err != nil {
-		log.Print("Error migrating file")
-		return nil, err
-	}
-
-	if err := db.AutoMigrate(&fs.Directory{}); err != nil {
-		log.Print("Error migrating directory")
 		return nil, err
 	}
 
