@@ -5,8 +5,9 @@ import (
 	"log"
 
 	"github.com/joho/godotenv"
+	"github.com/joshjms/archive/api"
 	"github.com/joshjms/archive/db"
-	"github.com/joshjms/archive/filesystem"
+	fs "github.com/joshjms/archive/filesystem"
 )
 
 func main() {
@@ -24,8 +25,10 @@ func main() {
 		panic(err)
 	}
 
-	fs := filesystem.New(db)
+	fmt.Println("Connected to database")
+
+	fs := fs.New(db)
 	fs.Init()
 
-	fmt.Println("Connected to database")
+	api.Init(fs)
 }
