@@ -1,0 +1,7 @@
+# Binary files
+/build/*
+
+# Environment variables
+.env
+
+tmp/*
